@@ -1,0 +1,15 @@
+package com.jamiechung.springboot.demo.artshop.controller.exception;
+
+public class ValidationException extends ServiceException{
+    public ValidationException(String message) {
+        super(message);
+    }
+
+    public ValidationException(String message, Throwable cause) {
+        super(message, cause);
+    }
+
+    public ValidationException(Throwable cause) {
+        super(cause);
+    }
+}
