@@ -32,7 +32,6 @@ public class ProductController {
         }
         ResponseInfo info = new ResponseInfo(HttpStatus.OK.value(), "success");
         BaseResponse response = new BaseResponse(info, pageResult);
-
         return ResponseEntity.ok(response);
     }
 

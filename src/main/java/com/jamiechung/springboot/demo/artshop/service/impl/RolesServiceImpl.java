@@ -1,5 +1,6 @@
 package com.jamiechung.springboot.demo.artshop.service.impl;
 
+import com.jamiechung.springboot.demo.artshop.controller.exception.DataNotFoundException;
 import com.jamiechung.springboot.demo.artshop.dao.RoleRepository;
 import com.jamiechung.springboot.demo.artshop.domain.entity.Role;
 import com.jamiechung.springboot.demo.artshop.service.RolesService;
@@ -25,9 +26,7 @@ public class RolesServiceImpl implements RolesService {
 
     @Override
     public Role findById(Long id) {
-        Optional<Role> roleOpt = roleRepository.findById(id);
-        Role role = roleOpt.orElseThrow(() -> new RuntimeException("Did not find role id - " + id));
-        return role;
+        return roleRepository.findById(id).orElseThrow(() -> new DataNotFoundException("Can not find role id - " + id));
     }
 
     @Override

@@ -19,9 +19,9 @@ public interface UsersService {
 
     UserVo login(User user);
 
-    Optional<String> register(UserVo userVo);
+    String register(UserVo userVo);
 
-    Optional<String> ValidateUsers(User user);
+    String ValidateUser(User user);
 
-    Optional<String> ValidateUserVo(UserVo user);
+    String ValidateUserVo(UserVo user);
 }

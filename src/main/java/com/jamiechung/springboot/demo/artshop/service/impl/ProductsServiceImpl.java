@@ -1,5 +1,6 @@
 package com.jamiechung.springboot.demo.artshop.service.impl;
 
+import com.jamiechung.springboot.demo.artshop.controller.exception.DataNotFoundException;
 import com.jamiechung.springboot.demo.artshop.dao.ProductRepository;
 import com.jamiechung.springboot.demo.artshop.domain.entity.Product;
 import com.jamiechung.springboot.demo.artshop.service.ProductsService;
@@ -31,7 +32,7 @@ public class ProductsServiceImpl implements ProductsService {
 
     @Override
     public Product findById(Long id) {
-        return productRepository.findById(id).orElseThrow(() -> new RuntimeException("Can not find product id - " + id));
+        return productRepository.findById(id).orElseThrow(() -> new DataNotFoundException("Can not find product id - " + id));
     }
 
     @Override
@@ -46,17 +47,12 @@ public class ProductsServiceImpl implements ProductsService {
 
     @Override
     public String validateProduct(Product product) {
-        if (product.getName() == null) {
+        if (product.getName() == null)
             return "Name can't be blank.";
-        }
-
-        if (product.getCategoryId() == null) {
+        if (product.getCategoryId() == null)
             return "Category id can't be blank.";
-        }
-
-        if (product.getQuantity() == null) {
+        if (product.getQuantity() == null)
             return "Quantity can't be blank.";
-        }
         return "";
     }
 

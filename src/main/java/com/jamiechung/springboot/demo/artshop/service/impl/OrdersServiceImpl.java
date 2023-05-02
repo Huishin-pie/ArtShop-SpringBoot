@@ -1,5 +1,6 @@
 package com.jamiechung.springboot.demo.artshop.service.impl;
 
+import com.jamiechung.springboot.demo.artshop.controller.exception.DataNotFoundException;
 import com.jamiechung.springboot.demo.artshop.dao.OrderRepository;
 import com.jamiechung.springboot.demo.artshop.domain.entity.Order;
 import com.jamiechung.springboot.demo.artshop.service.OrdersService;
@@ -25,9 +26,7 @@ public class OrdersServiceImpl implements OrdersService {
 
     @Override
     public Order findById(Long id) {
-        Optional<Order> orderOpt = orderRepository.findById(id);
-        Order order = orderOpt.orElseThrow(() -> new RuntimeException("Did not find order id - " + id));
-        return order;
+        return orderRepository.findById(id).orElseThrow(() -> new DataNotFoundException("Can not find order id - " + id));
     }
 
     @Override
